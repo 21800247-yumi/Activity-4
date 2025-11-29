@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn" class= "px-4 py-2. bg-gray-300 rounded-xl">FIRST</button>
+    <button id="btn2" class= "px-4 py-2. bg-gray-300 rounded-xl">JSON</button>
+    <button id="btn3" class= "px-4 py-2. bg-gray-300 rounded-xl">Clean C od3</button>
+    <button id="post" class= "px-4 py-2. bg-gray-300 rounded-xl">POST</button>
+    <button id="get" class= "px-4 py-2. bg-gray-300 rounded-xl">GET</button>
+
+    <script>
+        
+        //
+        document.getElementById('btn').addEventListener('click', () =>{ 
+            fetch('http://localhost:3000/').then((response)=>{
+                return response.text()
+            }).then((text) => {
+                console.log(text);
+            })
+        })
+
+        //json
+        document.getElementById('btn2').addEventListener('click', () =>{
+            const test = fetch('http://localhost:3000/').then(
+                (response) => {
+                    response.json().then((response2) => {
+                        console.log(response2);
+                    })
+                }
+            )
+        })
+
+        //easier way
+        document.getElementById('btn3').addEventListener('click', () => {
+            // console.log('test 1')
+            post()
+            // console.log('test 3')
+        })
+
+        const post = async () => {
+            const response1 = await fetch('http://localhost:3000/')
+            const text = await response1.text()
+            console.log(response1);
+        }
+        
+        //post
+        document.getElementById('post').addEventListener('click', () => {
+            post1()
+        })
+
+        const post1 = async () => {
+            const response = await fetch('http://localhost:3000/', {
+                method: 'POST',
+                headers: {
+                    'Content-type':
+                    'application/jason'
+                },
+                body: JSON.stringify({
+                    id: 1,
+                    name: 'kysh'
+                })
+            })
+            const text = await response.text()
+            console.log(text);
+        }
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>
